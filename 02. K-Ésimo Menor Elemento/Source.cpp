@@ -12,18 +12,18 @@ using namespace std;
 
 
 /*@ <answer>
-  
+
  Escribe aquí un comentario general sobre la solución, explicando cómo
  se resuelve el problema y cuál es el coste de la solución, en función
  del tamaño del problema.
- 
+
  @ </answer> */
 
 
-// ================================================================
-// Escribe el código completo de tu solución aquí debajo
-// ================================================================
-//@ <answer>
+ // ================================================================
+ // Escribe el código completo de tu solución aquí debajo
+ // ================================================================
+ //@ <answer>
 
 bool resuelveCaso() {
     int tam_conjunto, tam_consulta, num, sol;
@@ -31,7 +31,7 @@ bool resuelveCaso() {
     // leer los datos de la entrada
     cin >> tam_conjunto;
     if (tam_conjunto == 0)
-       return false;
+        return false;
     for (int i = 0; i < tam_conjunto; i++) {
         cin >> num;
         conjunto.insert(num);
@@ -40,9 +40,13 @@ bool resuelveCaso() {
     // resolver el caso posiblemente llamando a otras funciones
     for (int i = 0; i < tam_consulta; i++) {
         cin >> num;
-        sol = conjunto.kesimo(num);
-        if (sol != -1) cout << sol;
-        else cout << "??";
+        try {
+            sol = conjunto.kesimo(num);
+            cout << sol;
+        }
+        catch (std::out_of_range& e) {
+            cout << e.what();
+        }
         cout << "\n";
     }
     // escribir la solución
@@ -54,18 +58,18 @@ bool resuelveCaso() {
 //  Lo que se escriba dejado de esta línea ya no forma parte de la solución.
 
 int main() {
-   // ajustes para que cin extraiga directamente de un fichero
+    // ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-   std::ifstream in("casos.txt");
-   auto cinbuf = std::cin.rdbuf(in.rdbuf());
+    std::ifstream in("casos.txt");
+    auto cinbuf = std::cin.rdbuf(in.rdbuf());
 #endif
-   
-   while (resuelveCaso());
-   
-   // para dejar todo como estaba al principio
+
+    while (resuelveCaso());
+
+    // para dejar todo como estaba al principio
 #ifndef DOMJUDGE
-   std::cin.rdbuf(cinbuf);
-   system("PAUSE");
+    std::cin.rdbuf(cinbuf);
+    system("PAUSE");
 #endif
-   return 0;
+    return 0;
 }

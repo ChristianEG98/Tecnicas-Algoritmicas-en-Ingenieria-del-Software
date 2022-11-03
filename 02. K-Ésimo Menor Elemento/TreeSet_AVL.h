@@ -1,3 +1,4 @@
+#pragma once
 //
 //  TreeSet_AVL.h
 //
@@ -35,8 +36,7 @@ protected:
         Link iz, dr;
         int altura;
         int tam_i;
-        TreeNode(T const& e, Link i = nullptr, Link d = nullptr,
-            int alt = 1, int tam_i = 1) : elem(e), iz(i), dr(d), altura(alt), tam_i(tam_i) {}
+        TreeNode(T const& e, Link i = nullptr, Link d = nullptr, int alt = 1, int _tam_i = 1) : elem(e), iz(i), dr(d), altura(alt), tam_i(_tam_i) {}
     };
 
     // puntero a la raíz de la estructura jerárquica de nodos
@@ -93,8 +93,8 @@ public:
 
     T const& kesimo(int k) const {
         Link p = devuelve_elem(k, raiz);
-        if (p == nullptr) return -1;
-        else return p->elem;
+        if(p == nullptr) throw std::out_of_range("??");
+        return p->elem;
     }
 
 protected:
